@@ -361,6 +361,107 @@ declare namespace TelegramBot {
         message_thread_id?: number | undefined;
     }
 
+    interface ReactionType {
+        type: "emoji" | "custom_emoji" | "paid";
+    }
+
+    interface ReactionTypeEmoji extends ReactionType {
+        type: "emoji";
+        emoji:
+            | "👍"
+            | "👎"
+            | "❤"
+            | "🔥"
+            | "🥰"
+            | "👏"
+            | "😁"
+            | "🤔"
+            | "🤯"
+            | "😱"
+            | "🤬"
+            | "😢"
+            | "🎉"
+            | "🤩"
+            | "🤮"
+            | "💩"
+            | "🙏"
+            | "👌"
+            | "🕊"
+            | "🤡"
+            | "🥱"
+            | "🥴"
+            | "😍"
+            | "🐳"
+            | "❤‍🔥"
+            | "🌚"
+            | "🌭"
+            | "💯"
+            | "🤣"
+            | "⚡"
+            | "🍌"
+            | "🏆"
+            | "💔"
+            | "🤨"
+            | "😐"
+            | "🍓"
+            | "🍾"
+            | "💋"
+            | "🖕"
+            | "😈"
+            | "😴"
+            | "😭"
+            | "🤓"
+            | "👻"
+            | "👨‍💻"
+            | "👀"
+            | "🎃"
+            | "🙈"
+            | "😇"
+            | "😨"
+            | "🤝"
+            | "✍"
+            | "🤗"
+            | "🫡"
+            | "🎅"
+            | "🎄"
+            | "☃"
+            | "💅"
+            | "🤪"
+            | "🗿"
+            | "🆒"
+            | "💘"
+            | "🙉"
+            | "🦄"
+            | "😘"
+            | "💊"
+            | "🙊"
+            | "😎"
+            | "👾"
+            | "🤷‍♂"
+            | "🤷"
+            | "🤷‍♀"
+            | "😡";
+    }
+
+    interface ReactionTypeCustomEmoji extends ReactionType {
+        type: "custom_emoji";
+        custom_emoji_id: string;
+    }
+
+    interface ReactionTypePaid extends ReactionType {
+        type: "paid";
+    }
+
+    interface ReactionCount {
+        type: ReactionType;
+        total_count: number;
+    }
+
+    interface setMessageReactionOptions {
+        reaction?: ReactionType[];
+        is_big?: boolean;
+    }
+
     interface SetChatPermissionsOptions {
         use_independent_chat_permissions?: boolean | undefined;
     }
@@ -1727,6 +1828,12 @@ declare class TelegramBot extends TelegramBotEventEmitter<TelegramBot.TelegramEv
         chatId: TelegramBot.ChatId,
         action: TelegramBot.ChatAction,
         options?: TelegramBot.SendChatActionOptions,
+    ): Promise<boolean>;
+
+    setMessageReaction(
+        chatId: TelegramBot.ChatId,
+        messageId: TelegramBot.MessageId,
+        options?: TelegramBot.setMessageReactionOptions,
     ): Promise<boolean>;
 
     banChatMember(

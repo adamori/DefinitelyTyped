@@ -501,3 +501,4 @@ MyTelegramBot.addStickerToSet(1234, "custom_sticker", "sticker_path", "emoji", "
 MyTelegramBot.setStickerPositionInSet("sticker_on_position_one", 2);
 MyTelegramBot.deleteStickerFromSet("sticker_on_position_one");
 MyTelegramBot.setStickerSetThumb(1234, "my_set_thumb", "thumb_file");
+MyTelegramBot.setMessageReaction(1234, 1234, [{ type: "emoji", emoji: "👍" }]);
